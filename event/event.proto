@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package events;
+
+option go_package = "event";
+
+message Event {
+   uint32 id = 1;
+   bytes payload = 2;
+}
+
+service EventService{
+   rpc Events (stream Event) returns (stream Event);
+}

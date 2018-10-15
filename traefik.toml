@@ -1,0 +1,24 @@
+logLevel = "INFO"
+
+
+######################################################
+##            HTTP + HTTPS (self signed cert)       ##
+######################################################
+
+defaultEntryPoints = ["https"]
+[entryPoints]
+  [entryPoints.https]
+  address = ":443"
+    [entryPoints.https.tls]
+
+[file]
+
+[backends]
+  [backends.grpc]
+    [backends.grpc.servers]
+      [backends.grpc.servers.server0]
+        url = "h2c://localhost:8080"
+
+[frontends]
+  [frontends.grpc]
+    backend = "grpc"
